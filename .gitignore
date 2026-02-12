@@ -1,0 +1,25 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Verify files
+verify*
+
+# Data files
+data*
+
+# Test files
+test*
+
+# Debug files
+debug*
+
+# VSCode files
+.vscode*

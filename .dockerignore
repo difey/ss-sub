@@ -1,0 +1,13 @@
+__pycache__
+*.py[cod]
+*$py.class
+.venv/
+.git/
+.gitignore
+.dockerignore
+Dockerfile
+README.md
+data/
+verify_template.py
+debug_models.py
+*.md
