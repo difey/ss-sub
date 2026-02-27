@@ -15,6 +15,7 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 COPY pyproject.toml uv.lock ./
 COPY src ./src
 COPY main.py ./
+COPY static ./static
 
 # Sync dependencies
 RUN uv sync --frozen --no-cache
