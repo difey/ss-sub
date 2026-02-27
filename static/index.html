@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clash Config Merger</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="toast-container"></div>
+    
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Clash Merger</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-target="subs-section">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg> 
+                    Subscriptions
+                </button>
+                <button class="nav-item" data-target="rules-section">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> 
+                    Custom Rules
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Subscriptions Section -->
+            <section id="subs-section" class="content-section active">
+                <header class="section-header">
+                    <h1>Manage Subscriptions</h1>
+                    <div class="header-actions">
+                        <button id="btn-refresh" class="btn btn-primary">Refresh & Merge</button>
+                        <button id="btn-download" class="btn btn-secondary">Download Config</button>
+                    </div>
+                </header>
+                
+                <div class="card add-sub-card">
+                    <h3>Add New Subscription</h3>
+                    <form id="add-sub-form" class="add-sub-form">
+                        <div class="form-group">
+                            <input type="url" id="sub-url" placeholder="https://example.com/subscribe" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="sub-name" placeholder="Name (Optional)">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </form>
+                </div>
+
+                <div class="subs-list-container">
+                    <h3>Active Subscriptions</h3>
+                    <div id="subs-list" class="subs-list">
+                        <!-- Items injected by JS -->
+                        <div class="loading-spinner">Loading...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rules Section -->
+            <section id="rules-section" class="content-section">
+                <header class="section-header">
+                    <h1>Custom Rules</h1>
+                    <div class="header-actions">
+                        <button id="btn-save-rules" class="btn btn-primary">Save Rules</button>
+                    </div>
+                </header>
+                <div class="card full-height-card">
+                    <p class="section-desc">Add your custom Clash rules here. They will be placed at the top of the generated config.</p>
+                    <textarea id="rules-input" class="rules-textarea" placeholder="- DOMAIN-SUFFIX,example.com,DIRECT..." spellcheck="false"></textarea>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>
