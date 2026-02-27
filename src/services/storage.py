@@ -51,43 +51,10 @@ class StorageService:
         
     def save_custom_rules(self, new_rules_text: str):
         """
-        Upsert custom rules. New rules overwrite existing ones if Type+Value match.
+        Overwrite custom rules completely with new rules.
         """
-        existing_text = self.get_custom_rules()
-        existing_rules = [r.strip() for r in existing_text.splitlines() if r.strip()]
-        
-        # Helper to get key
-        def get_key(rule):
-            parts = rule.split(',')
-            if not parts: return rule
-            rule_type = parts[0].strip().upper()
-            if rule_type == 'MATCH':
-                return 'MATCH'
-            elif len(parts) >= 2:
-                return f"{rule_type},{parts[1].strip()}"
-            return rule
-
-        # Build map of Key -> Rule (preserve order for existing)
-        rule_map = {}
-        ordered_keys = []
-        
-        for rule in existing_rules:
-            key = get_key(rule)
-            if key not in rule_map:
-                ordered_keys.append(key)
-            rule_map[key] = rule
-            
-        # Process new rules
         new_rules = [r.strip() for r in new_rules_text.splitlines() if r.strip()]
-        for rule in new_rules:
-            key = get_key(rule)
-            if key not in rule_map:
-                ordered_keys.append(key)
-            rule_map[key] = rule # Overwrite
-            
-        # Reconstruct content
-        final_rules = [rule_map[key] for key in ordered_keys]
-        self.custom_rules_file.write_text("\n".join(final_rules), encoding="utf-8")
+        self.custom_rules_file.write_text("\n".join(new_rules), encoding="utf-8")
         
     def get_custom_rules(self) -> str:
         if self.custom_rules_file.exists():

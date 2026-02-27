@@ -26,7 +26,7 @@ def merge_clash_configs(configs: List[Tuple[str, str]], custom_rules: List[str] 
     
     # Helper to apply prefix
     def apply_prefix(name: str, prefix: str) -> str:
-        if name in ["DIRECT", "REJECT", "GLOBAL", "Final", "Traffic"] or name.startswith("Expire:"):
+        if name in ["DIRECT", "REJECT", "GLOBAL", "Final"] or name.startswith("Expire:") or name.startswith("Traffic:"):
             return name
         return f"{prefix}_{name}"
 
